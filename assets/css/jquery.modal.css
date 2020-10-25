@@ -1,0 +1,51 @@
+.modal {
+  display: none;
+  width: 460px;
+  height: 460px;
+  padding: 15px 30px;
+  text-align:center;
+  position:relative;
+  
+  -webkit-border-radius: 1000px;
+  -moz-border-radius: 1000px;
+  -o-border-radius: 1000px;
+  -ms-border-radius: 1000px;
+  border-radius: 1000px;
+  border:13px #ff7372 solid;
+  -webkit-box-shadow: 0 0 3px #ff7372;
+  -moz-box-shadow: 0 0 3px #ff7372;
+  -o-box-shadow: 0 0 3px #ff7372;
+  -ms-box-shadow: 0 0 3px #ff7372;
+  box-shadow: 0 0 3px #ff7372;
+  
+  background: #ffffff; /* for non-css3 browsers */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#d4c8a3'); /* for IE */
+  background: -webkit-gradient(linear, right top, right bottom, from(#ffffff), to(#d4c8a3)); /* for webkit browsers */
+  background: -moz-linear-gradient(top,  #ffffff,  #d4c8a3); /* for firefox 3.6+ */ 
+}
+
+.modal a.close-modal {
+  position: absolute;
+  top: 50px;
+  left: 120px;
+  display: block;
+  width: 22px;
+  height: 22px;
+  text-indent: -9999px;
+  background: url(../img/close.png) no-repeat 0 0;
+}
+
+.modal img { margin-top:30px; }
+.modal h3 { color:#fa5655; font-family:"RobotoCondensed"; font-size:33px; text-transform:uppercase; }
+.modal .ruler2 { width:72%; height:0; border-bottom:2px #fa5655 dashed; margin:10px auto 30px; }
+
+.modal .sign-up-content { width:250px; margin:auto; }
+.modal .sign-up-content input[type='text'] { border-radius:0; text-align:center; }
+.modal .sign-up-content input[type='radio'] { margin-top:-2px; }
+.modal .sign-up-content label { display:inline-block; margin-left:20px; }
+.modal .btn { margin-top:10px; padding:7px 30px; font-family:"RobotoCondensed"; font-size:18px; text-transform:uppercase; }
+
+.modal .sign-up-photos { width:633px; height:554px; position:absolute; right:-45px; bottom:-80px; background:url(../img/sign-up-photos.png) no-repeat; z-index:-1; }
+
+
+
