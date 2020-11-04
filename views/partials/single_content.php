@@ -313,18 +313,27 @@
         </div>
         <!--End Right Column-->
         <!--Start Left Content Block-->
+        <?php $post_slider_images = get_post_meta($post->ID, 'slider_images', true); ?>
         <div class="span9 fr">
             <div class="products-details clearfix row-fluid">
                 <div class="product-image span4 clearfix fl">
                     <div class="targetarea">
-                        <img id="multizoom1" title="" src="<?php echo Asset::image('products/1.jpg') ?>"/>
+                        <img id="multizoom1" src="<?php echo $post_slider_images[0] ?>"/>
                     </div>
                     <div id="description">
                     </div>
                     <div class="multizoom1 thumbs">
-                        <a href="#" data-large="<?php echo Asset::image('products/1-big.jpg') ?>"><img src="<?php echo Asset::image('products/1-thumb.jpg') ?>"/></a>
-                        <a href="#" data-large="<?php echo Asset::image('products/1-2-big.jpg') ?>"><img src="<?php echo Asset::image('products/1-2-thumb.jpg') ?>"/></a>
-                        <a href="#" data-large="<?php echo Asset::image('products/1-3-big.jpg') ?>"><img src="<?php echo Asset::image('products/1-3-thumb.jpg') ?>"/></a>
+                        <?php if (isset($post_slider_images) && is_array($post_slider_images) && count($post_slider_images) > 0): ?>
+                            <?php foreach ($post_slider_images as $src_items): ?>
+                                <?php if ($src_items !== ''): ?>
+                                    <img src="<?php echo $src_items ?>" alt="images"/>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <h3 style="text-align: center">
+                                عکسی جهت نمایش وجود ندارد
+                            </h3>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="product-information fr">
@@ -332,7 +341,8 @@
                         <?php echo get_the_title(); ?>
                     </h4>
                     <div class="stars">
-                        <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+                        <span class="star"></span><span class="star"></span><span class="star"></span><span
+                                class="star"></span><span class="star"></span>
                     </div>
                     <div class="clearfix mt-10">
                         <label class="fl">رنگ:</label>
@@ -384,12 +394,13 @@
                     </div>
                     <h3 class="clearfix">$169.99</h3>
                     <h2 class="clearfix">$149.99</h2>
-                    <div class="clearfix mt-10">
+                    <form method="post" class="clearfix mt-10">
+                        <input type="hidden" name="product_id" value="<?php echo get_the_ID() ?>" />
                         <div class="button-box fl">
-                            <div>
+                            <button type="submit" name="add_to_cart">
                                 <i class="icon-shopping-cart"></i>
                                 <span>افزودن به سبد خرید</span>
-                            </div>
+                            </button>
                             <div>
                                 <i class="icon-refresh"></i>
                             </div>
@@ -397,7 +408,7 @@
                                 <i class="icon-heart"></i>
                             </div>
                         </div>
-                    </div>
+                    </form>
                     <div class="clearfix mt-10">
                         <div class="icon-socials">
                             <a href="#" class="fl"><i class="icon-facebook icon-2x"></i></a>
@@ -420,18 +431,27 @@
                 </ul>
                 <div id="t-description">
                     <p>
-                        کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد
+                        کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با
+                        نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان
+                        فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط
+                        سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل
+                        دنیای موجود طراحی اساسا مورد استفاده قرار گیرد
                 </div>
                 <div id="t-additional">
                     <p>
-                        کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد
+                        کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با
+                        نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان
+                        فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط
+                        سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل
+                        دنیای موجود طراحی اساسا مورد استفاده قرار گیرد
                     </p>
                 </div>
                 <div id="t-reviews" class="clearfix">
                     <div class="span3 ml-0">
                         <div class="review">
                             <div class="stars fr">
-                                <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+                                <span class="star"></span><span class="star"></span><span class="star"></span><span
+                                        class="star"></span><span class="star"></span>
                             </div>
                             <div class="review-header">
                                 <h5>بهروز امینی</h5>
@@ -440,14 +460,16 @@
                             <!--end review-header-->
                             <div class="review-body">
                                 <p>
-                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است
+                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
+                                    گرافیک است
                                 </p>
                             </div>
                             <!--end review-body-->
                         </div>
                         <div class="review">
                             <div class="stars fr">
-                                <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+                                <span class="star"></span><span class="star"></span><span class="star"></span><span
+                                        class="star"></span><span class="star"></span>
                             </div>
                             <div class="review-header">
                                 <h5>بهروز امینی</h5>
@@ -456,14 +478,16 @@
                             <!--end review-header-->
                             <div class="review-body">
                                 <p>
-                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است
+                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
+                                    گرافیک است
                                 </p>
                             </div>
                             <!--end review-body-->
                         </div>
                         <div class="review">
                             <div class="stars fr">
-                                <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+                                <span class="star"></span><span class="star"></span><span class="star"></span><span
+                                        class="star"></span><span class="star"></span>
                             </div>
                             <div class="review-header">
                                 <h5>بهروز امینی</h5>
@@ -472,7 +496,8 @@
                             <!--end review-header-->
                             <div class="review-body">
                                 <p>
-                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است
+                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
+                                    گرافیک است
                                 </p>
                             </div>
                             <!--end review-body-->
@@ -481,7 +506,8 @@
                     <div class="span3">
                         <form method="post" action="http://mosaicdesign.uz/rc/page" class="form-horizontal form-review">
                             <div class="control-group">
-                                <label class="control-label" for="inputName">نام<span class="text-error">*</span></label>
+                                <label class="control-label" for="inputName">نام<span
+                                            class="text-error">*</span></label>
                                 <div class="controls">
                                     <input type="text" name="#" id="inputName" placeholder="امینی...">
                                 </div>
@@ -502,7 +528,8 @@
                                     <span class="text-error">*</span></label>
                                 <div class="controls">
                                     <div class="stars fl">
-                                        <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+                                        <span class="star"></span><span class="star"></span><span
+                                                class="star"></span><span class="star"></span><span class="star"></span>
                                     </div>
                                 </div>
                             </div>

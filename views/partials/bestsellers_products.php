@@ -28,9 +28,8 @@
                                 <img src="<?php Asset::image('products/1.jpg') ?>" alt="product">
                             </div>
                             <div class="product-info">
-                                <h5>                                    <?php the_title() ?>
-                                </h5>
-                                <h4><span></span><?php echo Products::price(get_the_ID()); ?> تومان</h4>
+                                <h5><?php the_title() ?></h5>
+                                <h4><span style="color: red"><?php echo is_null(Products::price_with_discount(get_the_ID())) ? '' : Products::price(get_the_ID()); ?></span><?php echo is_null(Products::price_with_discount(get_the_ID()))  ? Products::price(get_the_ID()) : Products::price_with_discount(get_the_ID()) ?> تومان</h4>
                                 <div class="button-box">
                                     <div>
                                         <i class="icon-shopping-cart"></i>

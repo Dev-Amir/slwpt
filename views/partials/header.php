@@ -47,7 +47,7 @@
         <!--HEADER CONTENT-->
         <div class="header-content">
             <!--LOGO-->
-            <a href="#" class="logo"></a>
+            <a href="<?php echo get_site_url() ?>" class="logo"></a>
             <!--LOGO TITLE-->
             <div class="header-title">
                 <h1>Left Choice</h1>
@@ -268,50 +268,66 @@
             <!--START OF SHOPING CART-->
             <div class="header-shopping-cart fr">
                 <i class="icon-shopping-cart icon-2x fl"></i>
+
                 <div class="fl">
                     <a href="#" class="toggle-items fr">
-                        <i class="icon-angle-left icon-2x fr"></i>
+                        <?php
+                        if (Basket::total_count() != 0):
+                            ?>
+                            <i class="icon-angle-left icon-2x fr"></i>
+
+                        <?php endif; ?>
                         <h5>سبد خرید</h5>
-                        <p>
-                            <span id="items-amount">3</span> مورد یا موارد
-                        </p>
+                        <?php
+                        if (Basket::total_count() != 0):
+                            ?>
+                            <p>
+                                <span id="items-amount"><?php echo Basket::total_count() ?></span> کالا
+                            </p>
+                        <?php
+                        else:
+                            ?>
+                            <p>کالایی وجود ندارد</p>
+                        <?php endif; ?>
                     </a>
                 </div>
                 <!--SHOPING CART ITEMS-->
+                <?php $total_price = 0; ?>
                 <div class="header-shopping-cart-items">
-                    <div class="item fl">
-                        <img src="<?php Asset::image( 'products/1-thumb' ) ?>.jpg" class="fl"/>
-                        <div class="fl">
-                            <h5>لباس ساتن مچ پا</h5>
-                            <p>
-                                $149.99
-                            </p>
-                        </div>
-                        <a href="#" class="fr"><i class="icon-remove fl"></i></a>
-                    </div>
-                    <div class="item fl">
-                        <img src="<?php Asset::image( 'products/1-thumb' ) ?>.jpg" class="fl"/>
-                        <div class="fl">
-                            <h5>لباس ساتن مچ پا</h5>
-                            <p>
-                                $149.99
-                            </p>
-                        </div>
-                        <a href="#" class="fr"><i class="icon-remove fl"></i></a>
-                    </div>
-                    <div class="item fl">
-                        <img src="<?php Asset::image( 'products/1-thumb' ) ?>.jpg" class="fl"/>
-                        <div class="fl">
-                            <h5>لباس ساتن مچ پا</h5>
-                            <p>
-                                $149.99
-                            </p>
-                        </div>
-                        <a href="#" class="fr"><i class="icon-remove fl"></i></a>
-                    </div>
+                    <?php if (Basket::total_count() != 0): ?>
+                        <?php foreach ($_SESSION['basket']['item'] as $item): ?>
+                        <?php
+                        $price_number = (int) Utility::english_number(preg_replace('/,/', '', $item['price']));
+                        $total_price += $price_number * $item['count'];
+                            ?>
+                            <div class="item fl">
+                            <?php if (isset($item['image'])): ?>
+                                <img src="<?php echo $item['image'] ?>" class="fl"/>
+                            <? endif; ?>
+                            <div class="fl">
+                                <div>
+                                    <h5><?php echo $item['title'] ?></h5>
+                                    <p>
+                                        <?php echo $item['price'] ?> تومان
+                                    </p>
+                                </div>
+                                <div>
+                                    <p>
+                                        <?php echo $item['count'] ?> تعداد
+                                    </p>
+                                </div>
+                            </div>
+                            <a href="#" class="fr"><i class="icon-remove fl"></i></a>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                     <div class="total fl">
                         <p class="fl">
-                            مجموع: <span>$449.97</span>
+                            مجموع: <span>
+                                <?php
+                                echo Utility::persian_numbers(number_format($total_price));
+                                ?>
+                            </span>
                         </p>
                         <a href="checkout.html" class="fr">بررسی</a>
                     </div>

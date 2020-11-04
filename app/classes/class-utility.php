@@ -10,4 +10,12 @@ class Utility
 
         return str_replace($english_numbers, $persian_numbers, $input);
     }
+
+    public static function english_number($input)
+    {
+        $persian_numbers = array('۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹');
+        $english_numbers = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+
+        return str_replace($persian_numbers, $english_numbers, $input);
+    }
 }
